@@ -26,14 +26,4 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your-measurement-id
 These values identify the Firebase web app and are intended for client-side use; protect accounts with Firebase
 Authentication settings and security controls, not by treating the web configuration as a secret.
 
-Reservation requests are emailed through [Resend](https://resend.com/). Add these variables to `.env.local` for
-local development and to your hosting provider's environment settings in production:
-
-```env
-RESEND_API_KEY=re_...
-RESERVATION_EMAIL_TO=your-inbox@example.com
-RESERVATION_EMAIL_FROM=Ember Table <reservations@your-verified-domain.com>
-```
-
-Verify the sender domain in Resend before using it. The form shows a confirmation only after the email service
-accepts the reservation; otherwise, it displays an error so the guest can retry or call.
+The reservation form displays an on-page confirmation when submitted. Reservations are not sent or stored.

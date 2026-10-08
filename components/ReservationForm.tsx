@@ -5,47 +5,24 @@ type Booking = { name: string; date: string; time: string; guests: number };
 
 export default function ReservationForm() {
   const [booking, setBooking] = useState<Booking | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const reservation = {
+    setBooking({
       name: String(f.get("name")),
-      phone: String(f.get("phone")),
       date: String(f.get("date")),
       time: String(f.get("time")),
       guests: Number(f.get("guests")),
-    };
-
-    setIsSubmitting(true);
-    setError("");
-    try {
-      const response = await fetch("/api/reservations", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(reservation),
-      });
-      const result: { error?: string } = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || "We couldn't send your reservation. Please try again.");
-      }
-      setBooking(reservation);
-    } catch (error) {
-      setError(error instanceof Error ? error.message : "We couldn't send your reservation. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    });
   }
 
   if (booking) {
     return (
       <div className="confirm" role="status">
-        <h3>Table requested, {booking.name}.</h3>
+        <h3>Table reserved, {booking.name}.</h3>
         <p>
-          {booking.guests} {booking.guests === 1 ? "guest" : "guests"} on {booking.date} at {booking.time}. We will
-          confirm by phone within the hour.
+          {booking.guests} {booking.guests === 1 ? "guest" : "guests"} on {booking.date} at {booking.time}.
         </p>
         <button className="btn" onClick={() => setBooking(null)}>Change booking</button>
       </div>
@@ -65,10 +42,7 @@ export default function ReservationForm() {
         </select>
       </label>
       <label>Guests<input name="guests" type="number" min={1} max={12} defaultValue={2} required /></label>
-      {error && <p className="form-error" role="alert">{error}</p>}
-      <button className="btn" type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Sending request..." : "Request a table"}
-      </button>
+      <button className="btn" type="submit">Reserve a table</button>
     </form>
   );
 }
