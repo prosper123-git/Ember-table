@@ -1,5 +1,6 @@
 import MenuTabs from "@/components/MenuTabs";
 import ReservationForm from "@/components/ReservationForm";
+import AccountNavLink from "@/components/AccountNavLink";
 import { hours } from "@/lib/data";
 
 export default function Home() {
@@ -11,8 +12,8 @@ export default function Home() {
           <a href="#menu">Menu</a>
           <a href="#story">Our fire</a>
           <a href="#visit">Visit</a>
-          <a href="/login">Sign in</a>
           <a href="#book" className="btn small">Book a table</a>
+          <AccountNavLink />
         </nav>
       </header>
 
