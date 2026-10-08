@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-ember-display" });
-const body = Source_Serif_4({ subsets: ["latin"], variable: "--font-ember-body" });
+const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display" });
+const body = Source_Serif_4({ subsets: ["latin"], variable: "--font-body" });
 
 export const metadata: Metadata = {
   title: "Ember Table | West African wood-fire kitchen",
